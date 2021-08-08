@@ -2,6 +2,51 @@
 
 @layer components {
   .button {
-    @apply px-4 py-2 border rounded-full cursor-pointer hover:shadow-lg active:scale-95 active:bg-gray-100 transition transform duration-300 ease-out;
+    @apply px-6 py-3 border rounded-lg text-xl cursor-pointer hover:shadow-lg active:scale-95 border-transparent hover:ring-2 hover:ring-offset-2 hover:outline-none transition duration-200;
   }
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap");
+
+body {
+  font-family: "Nunito", sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --red: #e0565b;
+  --yellow: #ffffd6;
+  --dark: #2e2e48;
+  --brown: #3f3f1a;
+  --light: #fafafc;
+  --gray: #efeff5;
+  --white: #fff;
+  --side-padding: 3rem;
+  --max-width: 40%;
+  --container-width: 1200px;
+}
+
+.btn {
+  --color: var(--dark);
+  --bgcolor: var(--light);
+  display: inline-block;
+  white-space: nowrap;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color);
+  background: var(--bgcolor);
+  border-radius: 0.66rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1.5rem -0.5rem currentColor;
+}
+
+.btn:hover,
+.btn:focus {
+  box-shadow: 0 0 0 2px var(--color), 0 0 0 4px var(--bgcolor);
+}
+.btn:active {
+  transform: scale(0.95);
 }

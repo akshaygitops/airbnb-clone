@@ -1,7 +1,7 @@
 import Head from "next/head";
-import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Hero from "../components/Hero";
 import LargeCard from "../components/LargeCard";
 import MediumCard from "../components/MediumCard";
 import SmallCard from "../components/SmallCard";
@@ -11,13 +11,16 @@ export default function Home({ exploreData, cardsData }) {
     <div>
       <Head>
         <title>Airbnb</title>
+        <meta
+          name="description"
+          content="Find holiday rentals, cabins, beach houses, unique homes and experiences around the world – all made possible by Hosts on Airbnb."
+        />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <Header />
-      <Banner />
-
-      <main className="max-w-7xl mx-auto px-8 sm:px-16">
+      <Hero />
+      <main className="max-w-max mx-auto p-8 sm:px-16">
         <section className="pt-6">
           <h2 className="text-4xl font-semibold pb-5">Explore Nearby</h2>
 
@@ -34,21 +37,20 @@ export default function Home({ exploreData, cardsData }) {
         </section>
 
         <section>
+          <LargeCard
+            img="https://i.imgur.com/unAOJQX.jpg"
+            title="The Greatest Outdoors"
+            description="Wishlists curated by Airbnb."
+            buttonText="Get Inspired"
+          />
           <h2 className="text-4xl font-semibold py-8">Live Anywhere</h2>
 
-          <div className="flex space-x-3 overflow-scroll scrollbar-hide p-3 -ml-3">
+          <div className="flex space-x-4 overflow-scroll scrollbar-hide p-3 ">
             {cardsData?.map(({ img, title }) => (
               <MediumCard key={img} img={img} title={title} />
             ))}
           </div>
         </section>
-
-        <LargeCard
-          img="https://links.papareact.com/4cj"
-          title="The Greatest Outdoors"
-          description="Wishlists curated by Airbnb."
-          buttonText="Get Inspired"
-        />
       </main>
 
       <Footer />
