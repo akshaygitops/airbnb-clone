@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { GlobeAltIcon, MenuIcon, UserCircleIcon } from "@heroicons/react/solid";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { useMediaQuery } from "@react-hook/media-query";
 import { Search } from "react-feather";
-// import DatePicker from "./DatePicker";
+import DatePicker from "./DatePicker";
 
 export default function Header({ placeholder }) {
   const router = useRouter();
@@ -183,7 +181,7 @@ export default function Header({ placeholder }) {
           </button>
         </form>
 
-        {/* {inputFocus && (
+        {inputFocus && (
           <DatePicker
             className="datepicker"
             close={closeDatePicker}
@@ -198,10 +196,10 @@ export default function Header({ placeholder }) {
               setValue: setNumberOfChildren,
             }}
           />
-        )} */}
+        )}
 
         <div className="profile">
-          <p>Become a host</p>
+          <a href="#">Become a host</a>
           <a href="#" className="globe">
             <GlobeAltIcon />
           </a>
@@ -416,11 +414,12 @@ const HeaderSection = styled.header`
     max-width: 700px;
     margin: 1.5rem 0;
     width: 60vw;
-    padding: 2px;
+    padding: 7px;
     border-radius: 100px;
-    transform: translate(-50%, 120%);
+    transform: translate(-50%, 150%);
     transform-origin: center;
     transition: all 0.2s ease-in-out;
+    box-shadow: 0 1rem 3rem -1rem #1e1e38;
 
     & * {
       transition: all 0.2s;
@@ -480,5 +479,120 @@ const HeaderSection = styled.header`
 
   input[type="number"] {
     -moz-appearance: textfield;
+  }
+
+  @media (max-width: 36rem) {
+    .profile,
+    .logo,
+    nav,
+    form > button span {
+      display: none;
+    }
+    .overlay {
+      display: none;
+    }
+    .header-inner {
+      grid-template-columns: 1fr;
+    }
+    form {
+      position: relative;
+      transform: none !important;
+      width: 100% !important;
+      left: unset;
+      top: 0;
+      margin: 0;
+      & > input {
+        padding: 0 1rem;
+        font-size: 1rem;
+      }
+      & > button {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0 0.6rem;
+      }
+      & > button svg {
+        height: 1rem;
+        width: 1rem;
+      }
+    }
+  }
+
+  @media (min-width: 36rem) and (max-width: 62.5rem) {
+    nav {
+      display: none;
+    }
+    .header-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &.scrolled:not(.inputFocus) {
+    background: var(--light);
+    color: var(--dark);
+    border-bottom: 2px solid var(--gray);
+
+    .overlay {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    nav {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .logo svg {
+      color: var(--red);
+    }
+    .user {
+      box-shadow: 0 0 0 2px var(--gray);
+    }
+    form {
+      box-shadow: 0 0 0 2px var(--gray);
+      transform: translate(-50%, 0.125rem) scale(0.83);
+      width: 480px;
+      & > button {
+        max-width: 3rem;
+      }
+      & > button span {
+        opacity: 0;
+      }
+    }
+    @media (max-width: 36rem) {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+
+      form {
+        padding: 0;
+        box-shadow: none;
+        background: var(--gray);
+      }
+    }
+
+    @media (min-width: 36rem) and (max-width: 62.5rem) {
+      .profile {
+        opacity: 0;
+        pointer-events: none;
+      }
+      form {
+        left: auto;
+        right: 0;
+        transform: translate(0, 0.125rem) scale(0.83);
+        width: 50%;
+      }
+    }
+  }
+
+  &.inputFocus {
+    color: var(--dark);
+
+    .logo svg {
+      color: var(--red);
+    }
+
+    form {
+      background: var(--light);
+      width: 100%;
+      box-shadow: 0 1rem 1.5rem -0.5rem #0001;
+    }
   }
 `;
